@@ -106,20 +106,22 @@ address{font-style:normal}
 .countdown-grid strong{display:block;font-size:clamp(2rem,7vw,4.5rem);font-weight:400;line-height:1;color:var(--ivory-bright)}
 .countdown-grid span{font:600 .68rem/1 var(--sans);text-transform:uppercase;letter-spacing:.15em;color:#dfe8dc}
 
-.details{background:var(--ivory);text-align:center}
+.details{position:relative;isolation:isolate;overflow:hidden;background:var(--ivory);text-align:center}
+.details::before{content:"";position:absolute;z-index:0;left:-190px;top:12%;width:380px;height:570px;background:url("assets/botanical-frame.webp") center/cover no-repeat;opacity:.055;mix-blend-mode:multiply;transform-origin:24% 82%;animation:botanical-sway 14s var(--ease-in-out) infinite alternate;pointer-events:none}
+.details .section-shell{position:relative;z-index:1}
 .details h2,.family h2,.guest-guide h2,.rsvp h2,.closing h2{margin:1rem auto;font-size:clamp(2.2rem,5vw,4.2rem);max-width:18ch}
-.timeline-five{display:grid;grid-template-columns:repeat(5,1fr);max-width:none;background:var(--line);border:1px solid var(--line);gap:1px;text-align:center}
-.timeline-five article{display:flex;min-width:0;min-height:240px;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1rem 1.8rem;background:var(--ivory-bright)}
-.timeline-five time{font:700 .78rem/1 var(--sans);letter-spacing:.08em;color:var(--gold-ink)}
-.timeline-five article>div{display:flex;width:100%;flex:1;flex-direction:column;align-items:center}
+.timeline-six{display:grid;grid-template-columns:repeat(6,1fr);max-width:none;background:var(--line);border:1px solid var(--line);gap:1px;text-align:center}
+.timeline-six article{display:flex;min-width:0;min-height:240px;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1rem 1.8rem;background:var(--ivory-bright)}
+.timeline-six time{font:700 .78rem/1 var(--sans);letter-spacing:.08em;color:var(--gold-ink)}
+.timeline-six article>div{display:flex;width:100%;flex:1;flex-direction:column;align-items:center}
 .timeline-icon{display:grid;place-items:center;width:58px;height:58px;flex:none;margin:0 auto 1rem;border:1px solid var(--gold);border-radius:50%;font:600 .72rem/1 var(--sans);letter-spacing:.1em;color:var(--gold-ink);transition:transform 260ms var(--ease-out),border-color 220ms ease,box-shadow 220ms ease}
-.timeline-five h3{display:flex;min-height:2.2em;max-width:15ch;align-items:center;justify-content:center;margin:0;font-size:1.1rem;line-height:1.1}
-.timeline-five p{max-width:19ch;margin:.4rem auto 0;font-size:.9rem;line-height:1.45;color:var(--sage-text)}
+.timeline-six h3{display:flex;min-height:2.2em;max-width:15ch;align-items:center;justify-content:center;margin:0;font-size:1.1rem;line-height:1.1}
+.timeline-six p{max-width:19ch;margin:.4rem auto 0;font-size:.9rem;line-height:1.45;color:var(--sage-text)}
 
 .family{position:relative;overflow:hidden;background:var(--sage-soft);text-align:center}
 .family-botanical{position:absolute;width:360px;height:520px;background:url("assets/botanical-frame.webp") center/cover no-repeat;opacity:.08;mix-blend-mode:multiply;pointer-events:none}
-.family-botanical-left{left:-180px;top:-130px;transform:rotate(-12deg)}
-.family-botanical-right{right:-180px;bottom:-150px;transform:rotate(170deg)}
+.family-botanical-left{left:-180px;top:-130px;transform-origin:25% 80%;animation:family-sway-left 18s var(--ease-in-out) infinite alternate}
+.family-botanical-right{right:-180px;bottom:-150px;transform-origin:75% 80%;animation:family-sway-right 20s var(--ease-in-out) -7s infinite alternate}
 .parents-grid{position:relative;display:grid;grid-template-columns:1fr 100px 1fr;align-items:center;max-width:900px;margin:3.5rem auto 0}
 .parents-grid article{padding:2.5rem}
 .parents-grid article:first-child{border-right:1px solid var(--line)}
@@ -176,7 +178,8 @@ address{font-style:normal}
 .venue-heading h2{margin:0;font-size:clamp(2.2rem,5vw,4.2rem)}
 .venue-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid rgba(120,87,21,.45);background:rgba(120,87,21,.45)}
 .venue-card{position:relative;overflow:hidden;display:flex;min-height:400px;flex-direction:column;justify-content:flex-end;padding:clamp(2rem,5vw,4.5rem);background:var(--sage-soft);isolation:isolate}
-.venue-card::before{content:"";position:absolute;z-index:-1;width:420px;height:620px;right:-180px;top:-210px;background:url("assets/botanical-frame.webp") center/cover no-repeat;opacity:.09;mix-blend-mode:multiply;transition:transform 1s var(--ease-in-out)}
+.venue-card::before{content:"";position:absolute;z-index:-1;width:420px;height:620px;right:-180px;top:-210px;background:url("assets/botanical-frame.webp") center/cover no-repeat;opacity:.09;mix-blend-mode:multiply;transform-origin:62% 76%;animation:venue-foliage 16s var(--ease-in-out) calc(var(--venue-delay,0) * -1s) infinite alternate;transition:opacity 300ms ease}
+.venue-card:nth-child(2){--venue-delay:5}.venue-card:nth-child(3){--venue-delay:9}
 .ceremony-card{background:#e3e9df}
 .reception-card{background:#d4dece}
 .venue-card>p{margin:0;color:var(--sage-text);font:700 .72rem/1.4 var(--sans);text-transform:uppercase;letter-spacing:.1em}
@@ -247,6 +250,8 @@ footer{display:flex;justify-content:space-between;gap:2rem;padding:1.5rem clamp(
 .motion-ready .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
 .motion-ready .reveal[data-reveal="soft"]{transform:none;filter:blur(4px);transition:opacity .9s var(--ease-out),filter .9s var(--ease-out)}
 .motion-ready .reveal.is-visible{opacity:1;transform:none;filter:none}
+.motion-ready .details .timeline article{opacity:0;transform:translateY(18px)}
+.motion-ready .details .is-visible .timeline article{animation:timeline-unfurl .68s var(--ease-out) calc(.12s + var(--i,0) * 65ms) both}
 .motion-ready .hero-copy:not(.is-visible) .hero-sequence{opacity:0;transform:translateY(12px)}
 .motion-ready .hero-copy.is-visible .hero-sequence{animation:invitation-enter .85s var(--ease-out) both}
 .motion-ready .hero-copy.is-visible .hero-sequence:nth-of-type(1){animation-delay:.12s}
@@ -255,22 +260,26 @@ footer{display:flex;justify-content:space-between;gap:2rem;padding:1.5rem clamp(
 .motion-ready .hero-copy.is-visible .hero-date{animation-delay:.4s}
 
 @keyframes invitation-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes timeline-unfurl{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes hero-breathe{to{transform:scale(1.018)}}
 @keyframes closing-breathe{to{transform:scale(1.018)}}
+@keyframes botanical-sway{from{transform:rotate(-4deg) translate3d(0,0,0)}to{transform:rotate(2deg) translate3d(9px,-7px,0)}}
+@keyframes family-sway-left{from{transform:rotate(-12deg) translate3d(0,0,0)}to{transform:rotate(-8deg) translate3d(10px,-8px,0)}}
+@keyframes family-sway-right{from{transform:rotate(170deg) translate3d(0,0,0)}to{transform:rotate(166deg) translate3d(-9px,-7px,0)}}
+@keyframes venue-foliage{from{transform:rotate(-2deg) scale(1)}to{transform:rotate(2deg) scale(1.025)}}
 @keyframes leaf-drift{0%{transform:translate3d(0,-10vh,0) rotate(0);opacity:0}12%{opacity:.52}75%{opacity:.3}100%{transform:translate3d(55px,112vh,0) rotate(420deg);opacity:0}}
 @keyframes gold-glint{55%,100%{transform:translateX(130%)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 @media(hover:hover) and (pointer:fine){
-  .timeline-five article:hover .timeline-icon{transform:translateY(-3px);border-color:var(--gold-ink);box-shadow:0 4px 0 rgba(120,87,21,.12)}
+  .timeline-six article:hover .timeline-icon{transform:translateY(-3px);border-color:var(--gold-ink);box-shadow:0 4px 0 rgba(120,87,21,.12)}
   .role-pair:hover{transform:translateX(4px);background:rgba(64,95,71,.06)}
-  .venue-card:hover::before{transform:rotate(5deg) scale(1.04)}
+  .venue-card:hover::before{opacity:.14}
   .text-link:hover{transform:translateY(-2px)}
 }
 
 @media(max-width:980px){
-  .timeline-five{grid-template-columns:repeat(2,1fr)}
-  .timeline-five article:last-child{grid-column:1/-1}
+  .timeline-six{grid-template-columns:repeat(3,1fr)}
   .party-columns{grid-template-columns:1fr}
   .sponsors{padding-top:1rem}
   .venue-cards{grid-template-columns:repeat(2,1fr)}
@@ -297,8 +306,7 @@ footer{display:flex;justify-content:space-between;gap:2rem;padding:1.5rem clamp(
   .countdown-grid div{padding-inline:.4rem}
   .countdown-grid strong{font-size:clamp(1.8rem,9vw,3rem)}
   .countdown-grid span{font-size:.62rem;letter-spacing:.08em}
-  .timeline-five{grid-template-columns:1fr}
-  .timeline-five article:last-child{grid-column:auto}
+  .timeline-six{grid-template-columns:1fr}
   .parents-grid{grid-template-columns:1fr}
   .parents-grid article{padding:1.7rem}
   .parents-grid article:first-child{border-right:0;border-bottom:1px solid var(--line)}
