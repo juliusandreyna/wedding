@@ -80,11 +80,13 @@ address{font-style:normal}
 .gold-flourish i{font:400 .72rem/1 var(--sans);font-style:normal;letter-spacing:.16em}
 
 .hero{position:relative;isolation:isolate;display:grid;place-items:center;min-height:100svh;padding:calc(var(--header-height) + 2rem) 1rem 2rem;overflow:hidden;background:var(--sage-wash)}
+.hero::before{content:"";position:absolute;z-index:1;inset:-20%;background:radial-gradient(circle at 28% 30%,rgba(255,253,248,.26),transparent 24%),radial-gradient(circle at 76% 68%,rgba(214,193,123,.13),transparent 22%);mix-blend-mode:screen;animation:hero-light-drift 22s var(--ease-in-out) infinite alternate;pointer-events:none}
 .hero::after{content:"";position:absolute;z-index:1;inset:clamp(12px,2.5vw,34px);border:1px solid rgba(120,87,21,.45);pointer-events:none}
 .hero-botanicals{position:absolute;z-index:0;inset:-5%;width:110%;height:110%;object-fit:cover;opacity:.34;mix-blend-mode:multiply;animation:hero-breathe 16s var(--ease-in-out) infinite alternate}
 .floating-leaves{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none}
 .floating-leaves i{position:absolute;top:-8%;width:9px;height:20px;border-radius:100% 0 100% 0;background:rgba(54,88,60,.34);animation:leaf-drift 16s linear infinite}
 .floating-leaves i:nth-child(1){left:14%;animation-delay:-2s}.floating-leaves i:nth-child(2){left:38%;animation-delay:-10s;animation-duration:20s}.floating-leaves i:nth-child(3){left:71%;animation-delay:-6s;animation-duration:18s}.floating-leaves i:nth-child(4){left:88%;animation-delay:-14s;animation-duration:22s}
+.floating-leaves i:nth-child(5){left:25%;animation-delay:-8s;animation-duration:24s;transform:scale(.72)}.floating-leaves i:nth-child(6){left:52%;animation-delay:-16s;animation-duration:19s;transform:scale(.62)}.floating-leaves i:nth-child(7){left:63%;animation-delay:-4s;animation-duration:26s;transform:scale(.8)}.floating-leaves i:nth-child(8){left:94%;animation-delay:-12s;animation-duration:21s;transform:scale(.58)}
 .hero-copy{position:relative;z-index:2;width:min(650px,90vw);padding:clamp(2.25rem,5vw,4rem) clamp(1.25rem,6vw,4.5rem);text-align:center;background:rgba(255,253,248,.96);clip-path:polygon(2% 1%,8% 1.6%,15% .5%,23% 1.2%,31% .3%,39% 1.5%,48% .5%,57% 1.1%,66% .2%,75% 1.4%,84% .5%,92% 1.3%,98% .5%,99% 8%,98.5% 17%,99.2% 26%,98.6% 35%,99.4% 44%,98.5% 53%,99.2% 62%,98.7% 71%,99.4% 80%,98.4% 89%,99% 98%,91% 98.7%,82% 99.3%,73% 98.5%,64% 99.4%,55% 98.7%,46% 99.3%,37% 98.5%,28% 99.4%,19% 98.6%,10% 99.2%,1% 98.4%,1.6% 89%,.7% 80%,1.5% 71%,.8% 62%,1.4% 53%,.6% 44%,1.5% 35%,.7% 26%,1.4% 17%,.7% 8%);filter:drop-shadow(var(--paper-shadow))}
 .hero-logo{width:96px;height:96px;margin:0 auto .65rem}
 .hero-intro{margin:0;font:600 .68rem/1.4 var(--sans);text-transform:uppercase;letter-spacing:.12em;color:var(--sage-text)}
@@ -223,7 +225,7 @@ legend{margin-bottom:.7rem}
 .radio-option:has(input:checked){border-color:var(--emerald);background:rgba(24,88,63,.08)}
 .radio-option input{width:20px;min-height:20px;accent-color:var(--emerald)}
 .radio-option span{color:var(--forest)!important;font:400 .96rem/1.3 var(--serif)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr;gap:1rem}
 .form-row label{font-size:clamp(.72rem,1.1vw,.82rem);white-space:nowrap}
 .field-hint,.privacy-note{margin:0;color:var(--sage-text);font:500 .79rem/1.5 var(--sans)}
 .form-error{min-height:1.2em;margin:0;color:#792f20;font:600 .79rem/1.4 var(--sans)}
@@ -264,6 +266,7 @@ footer{display:flex;justify-content:space-between;gap:2rem;padding:1.5rem clamp(
 @keyframes invitation-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes timeline-unfurl{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes hero-breathe{to{transform:scale(1.018)}}
+@keyframes hero-light-drift{from{transform:translate3d(-2%,1%,0) rotate(-2deg);opacity:.62}to{transform:translate3d(2%,-1%,0) rotate(2deg);opacity:1}}
 @keyframes closing-breathe{to{transform:scale(1.018)}}
 @keyframes botanical-sway{from{transform:rotate(-4deg) translate3d(0,0,0)}to{transform:rotate(2deg) translate3d(9px,-7px,0)}}
 @keyframes family-sway-left{from{transform:rotate(-12deg) translate3d(0,0,0)}to{transform:rotate(-8deg) translate3d(10px,-8px,0)}}
