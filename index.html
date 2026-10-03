@@ -214,7 +214,7 @@
           <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
           <div class="form-field">
             <label for="guest-name">Invited guest’s full name <span aria-hidden="true">*</span></label>
-            <input id="guest-name" name="Invited guest" autocomplete="name" required aria-describedby="guest-name-hint guest-name-error">
+            <input id="guest-name" name="Invited guest" autocomplete="name" placeholder="e.g., Juan Dela Cruz" required aria-describedby="guest-name-hint guest-name-error">
             <p class="field-hint" id="guest-name-hint">Use the name printed on your invitation.</p>
             <p class="form-error" id="guest-name-error"></p>
           </div>
@@ -229,6 +229,10 @@
           </fieldset>
 
           <input type="hidden" name="Response note" value="One RSVP response for the invited guest named above.">
+          <div class="form-row">
+            <div class="form-field"><label for="guest-contact">Contact number <span class="optional">Optional</span></label><input id="guest-contact" name="Contact number" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g., +63 912 345 6789"></div>
+            <div class="form-field"><label for="guest-message">Message for the couple <span class="optional">Optional</span></label><textarea id="guest-message" name="Message" rows="3" placeholder="Share a note for Julius Nico and Reyna Beth."></textarea></div>
+          </div>
           <p class="privacy-note">By submitting, you agree that your RSVP details will be processed by FormSubmit and emailed to the couple solely for wedding coordination.</p>
           <button class="button submit-button" type="submit"><span class="button-label">Send RSVP</span><span class="button-spinner" aria-hidden="true"></span></button>
           <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
