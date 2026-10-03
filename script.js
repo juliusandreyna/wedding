@@ -128,47 +128,18 @@ const formFallback = document.getElementById('form-fallback');
 const submitButton = rsvpForm.querySelector('.submit-button');
 const buttonLabel = submitButton.querySelector('.button-label');
 const attendanceInputs = [...rsvpForm.querySelectorAll('input[name="Attendance"]')];
-const attendingFields = document.getElementById('attending-fields');
-const guestNames = document.getElementById('guest-names');
-const guestNamesRequired = document.getElementById('guest-names-required');
-const guestEmail = document.getElementById('guest-email');
-const replyTo = document.getElementById('reply-to');
 
 const errorMap = new Map([
-  ['guest-name', document.getElementById('guest-name-error')],
-  ['guest-email', document.getElementById('guest-email-error')],
-  ['guest-names', document.getElementById('guest-names-error')]
+  ['guest-name', document.getElementById('guest-name-error')]
 ]);
 
-function selectedAttendance() {
-  return attendanceInputs.find((input) => input.checked)?.value;
-}
-
-function updateAttendanceFields() {
-  const attendance = selectedAttendance();
-  const accepting = attendance === 'Joyfully accepts';
-  const declining = attendance === 'Regretfully declines';
-  attendingFields.hidden = !accepting;
-  guestNamesRequired.hidden = !accepting;
-  guestNames.disabled = !accepting;
-  guestNames.required = accepting;
-  if (!accepting) {
-    guestNames.value = '';
-    guestNames.setCustomValidity('');
-    errorMap.get('guest-names').textContent = '';
-  }
-}
-
-attendanceInputs.forEach((input) => input.addEventListener('change', updateAttendanceFields));
-updateAttendanceFields();
+attendanceInputs.forEach((input) => input.addEventListener('change', validateAttendance));
+attendanceInputs.forEach((input) => input.addEventListener('change', validateAttendance));
 
 function validationMessage(input) {
   if (input.validity.valueMissing) {
     if (input.id === 'guest-name') return 'Please enter the name printed on your invitation.';
-    if (input.id === 'guest-email') return 'Please enter an email address so we can identify your response.';
-    if (input.id === 'guest-names') return 'Please list the invited guests who will attend.';
   }
-  if (input.validity.typeMismatch) return 'Please enter a valid email address.';
   return '';
 }
 
@@ -211,8 +182,6 @@ rsvpForm.addEventListener('submit', async (event) => {
   formStatus.className = 'form-status';
   formStatus.textContent = '';
   formFallback.hidden = true;
-  updateAttendanceFields();
-
   const fieldValidity = [...errorMap.keys()].map((id) => validateField(document.getElementById(id)));
   const attendanceValid = validateAttendance();
   if (fieldValidity.includes(false) || !attendanceValid || !rsvpForm.checkValidity()) {
@@ -220,7 +189,6 @@ rsvpForm.addEventListener('submit', async (event) => {
     return;
   }
 
-  replyTo.value = guestEmail.value.trim();
   setSubmitting(true);
   formStatus.textContent = 'Sending your response securely…';
 
@@ -238,7 +206,6 @@ rsvpForm.addEventListener('submit', async (event) => {
     }
 
     rsvpForm.reset();
-    updateAttendanceFields();
     formStatus.classList.add('success');
     formStatus.textContent = 'Thank you — your RSVP has been sent to Julius Nico and Reyna Beth.';
     formStatus.focus();
